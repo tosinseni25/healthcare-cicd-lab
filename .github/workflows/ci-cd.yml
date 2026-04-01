@@ -55,8 +55,8 @@ jobs:
           file: docker/Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKER_USERNAME }}/meditrack-api:latest
-            ${{ secrets.DOCKER_USERNAME }}/meditrack-api:${{ github.sha }}
+            tosinseni255/meditrack-api:latest
+            tosinseni255/meditrack-api:${{ github.sha }}
 
   deploy:
     name: Deploy to EKS
@@ -85,6 +85,6 @@ jobs:
           kubectl apply -f kubernetes/service.yaml
           kubectl apply -f kubernetes/servicemonitor.yaml
           kubectl set image deployment/meditrack-api \
-            meditrack-api=${{ secrets.DOCKER_USERNAME }}/meditrack-api:${{ github.sha }} \
+            meditrack-api=tosinseni255/meditrack-api:${{ github.sha }} \
             -n meditrack
           kubectl rollout status deployment/meditrack-api -n meditrack
