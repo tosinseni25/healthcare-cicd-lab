@@ -83,7 +83,7 @@ jobs:
           kubectl apply -f kubernetes/configmap.yaml
           kubectl apply -f kubernetes/deployment.yaml
           kubectl apply -f kubernetes/service.yaml
-          kubectl apply -f kubernetes/servicemonitor.yaml
+          kubectl apply -f kubernetes/servicemonitor.yaml || true
           kubectl set image deployment/meditrack-api \
             meditrack-api=tosinseni255/meditrack-api:${{ github.sha }} \
             -n meditrack
